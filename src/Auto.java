@@ -4,6 +4,15 @@ public class Auto {
     String model;
     String number;
     int year;
+    int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getColor() {
         return color;
