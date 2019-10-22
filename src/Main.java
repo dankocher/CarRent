@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    public static ArrayList<Auto> Cars = new ArrayList<>();
+    Auto auto = new Auto();
+
    public static void main(String[] args){
 
 
@@ -37,20 +40,20 @@ public class Main {
         }
     }
 
-    public static void addCar(){
-        ArrayList <Auto> Cars = new ArrayList<Auto>();
+    private static void addCar(){
         Scanner scanner = new Scanner(System.in);
-        Auto auto = new Auto();
+
         System.out.println("Введите марку машины");
-        auto.setMark(scanner.next());
+        String mark = scanner.next();
         System.out.println("Введите модель машины");
-        auto.setModel(scanner.next());
+        String model = scanner.next();
         System.out.println("Введите номер машины");
-        auto.setNumber(scanner.next());
+        String number = scanner.next();
         System.out.println("Введите год машины");
-        auto.setYear(scanner.nextInt());
+        int year = scanner.nextInt();
         System.out.println("Введите цвет машины");
-        auto.setColor(scanner.next());
+        String color = scanner.next();
+        Auto auto = new Auto(color, mark, model, number, year);
         Cars.add(auto);
         menu();
 
@@ -58,7 +61,12 @@ public class Main {
 
     }
     private static void showCars(){
-        System.out.println();
+
+       for(int i = 0; i<Cars.size(); i++){
+
+       }
+
+
         menu();
     }
 
