@@ -4,16 +4,34 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static ArrayList<Auto> Cars = new ArrayList<>();
-    Auto auto = new Auto();
+    private static ArrayList<Auto> Cars = new ArrayList<>();
+    public static Auto auto;
+//    private static Auto auto = new Auto("","a", "sd", "12", 12);
+
+
 
    public static void main(String[] args){
 
-
+//        test();
        menu();
 
 
+
     }
+//    private static void test(){
+//        String color = "cplor";
+//        String mark = "bmw";
+//        String model = "x5";
+//        String number = "15342";
+//        int year = 1423;
+//
+//
+//        for(int i = 0; i<5; i++){
+//            Cars.add(auto);
+//        }
+//    }
+
+
 
     private static void menu(){
         System.out.println("1 - добавить машину\n2 - удалить машину\n3 - редактировать машину\n4 - показать все машины\n5 - найти машину по марке и модели\n6 - найти машину по номеру");
@@ -62,7 +80,10 @@ public class Main {
     }
     private static void showCars(){
 
-       for(int i = 0; i<Cars.size(); i++){
+
+       for(Auto auto:Cars);{
+
+           auto.show(Cars);
 
        }
 

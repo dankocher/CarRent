@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Auto {
     private String color;
     private String mark;
@@ -5,6 +7,7 @@ public class Auto {
     private String number;
     private int year;
     private int id;
+
 
     public Auto(String color, String mark, String model, String number, int year) {
         this.color = color;
@@ -63,7 +66,7 @@ public class Auto {
         this.year = year;
     }
 
-    public void show(){
-        System.out.println("Марка: "+mark+"\n"+"Модель: "+model+"\n"+"Номер: "+number+"\n"+"Год: "+year+"\n"+"Цвет: "+color+"\n-------------\n");
+    public void show(ArrayList<Auto> Cars){
+         System.out.println("Марка: "+mark+"\n"+"Модель: "+model+"\n"+"Номер: "+number+"\n"+"Год: "+year+"\n"+"Цвет: "+color+"\n-------------\n");
     }
 }
