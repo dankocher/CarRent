@@ -66,7 +66,7 @@ public class Auto {
         this.year = year;
     }
 
-    public void show(ArrayList<Auto> Cars){
+    public void show(){
          System.out.println("Марка: "+mark+"\n"+"Модель: "+model+"\n"+"Номер: "+number+"\n"+"Год: "+year+"\n"+"Цвет: "+color+"\n-------------\n");
     }
 }

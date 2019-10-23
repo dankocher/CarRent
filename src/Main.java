@@ -71,7 +71,8 @@ public class Main {
         int year = scanner.nextInt();
         System.out.println("Введите цвет машины");
         String color = scanner.next();
-        Auto auto = new Auto(color, mark, model, number, year);
+//        Auto auto = new Auto(color, mark, model, number, year);
+        auto = new Auto(color, mark, model, number, year);
         Cars.add(auto);
         menu();
 
@@ -83,7 +84,8 @@ public class Main {
 
        for(Auto auto:Cars);{
 
-           auto.show(Cars);
+
+           auto.show();
 
        }
 
