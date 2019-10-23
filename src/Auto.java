@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Auto {
     private String color;
@@ -9,7 +8,7 @@ public class Auto {
     private int id;
 
 
-    public Auto(String color, String mark, String model, String number, int year) {
+    Auto(String color, String mark, String model, String number, int year) {
         this.color = color;
         this.mark = mark;
         this.model = model;

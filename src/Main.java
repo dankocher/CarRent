@@ -1,22 +1,17 @@
-import java.awt.*;
-import java.lang.invoke.SwitchPoint;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    private static ArrayList<Auto> Cars = new ArrayList<>();
-    public static Auto auto;
-//    private static Auto auto = new Auto("","a", "sd", "12", 12);
 
+
+public class Main {
+
+    private static ArrayList<Auto> Cars = new ArrayList<>();
 
 
    public static void main(String[] args){
-
-//        test();
+//     test();
        menu();
-
-
-
     }
 //    private static void test(){
 //        String color = "cplor";
@@ -31,8 +26,6 @@ public class Main {
 //        }
 //    }
 
-
-
     private static void menu(){
         System.out.println("1 - добавить машину\n2 - удалить машину\n3 - редактировать машину\n4 - показать все машины\n5 - найти машину по марке и модели\n6 - найти машину по номеру");
         Scanner scanner = new Scanner(System.in);
@@ -43,6 +36,7 @@ public class Main {
                break;
             case (2):
                 System.out.println("2");
+                removeCar();
                 break;
             case (3):
                 System.out.println("3");
@@ -71,26 +65,55 @@ public class Main {
         int year = scanner.nextInt();
         System.out.println("Введите цвет машины");
         String color = scanner.next();
-//        Auto auto = new Auto(color, mark, model, number, year);
-        auto = new Auto(color, mark, model, number, year);
+        Auto auto = new Auto(color, mark, model, number, year);
         Cars.add(auto);
         menu();
 
 
 
     }
-    private static void showCars(){
 
-
-       for(Auto auto:Cars);{
-
-
-           auto.show();
-
+    private static void removeCar(){
+       if(Cars.isEmpty()){
+           System.out.println("Машин нет");
+           menu();
        }
+       showCarsForRemove();
+        System.out.println("Какую машину хотите удалить?");
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        Cars.remove(n-1);
+        System.out.println("Машина удалена. Хотите удалить еще?(yes/no)");
+        String s = scanner.next();
+        if(s.equalsIgnoreCase("yes")){
+            removeCar();
+        } else if(s.equalsIgnoreCase("no")){
+            showCars();
+
+        }
 
 
+
+
+    }
+
+    private static void showCars(){
+       int i = 1;
+       for(Auto auto:Cars){
+           System.out.println("-----"+i+"-----");
+           i++;
+           auto.show();
+       }
         menu();
+    }
+
+    private static void  showCarsForRemove(){
+        int i = 1;
+        for(Auto auto:Cars){
+            System.out.println("-----"+i+"-----");
+            i++;
+            auto.show();
+        }
     }
 
 }
