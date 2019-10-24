@@ -158,6 +158,9 @@ public class Main {
                 System.out.println("Цвет машины изменен");
                 showCars(true);
                 break;
+                default:
+                    System.out.println("Вы ввели хуяч какой-то. Попробуйте еще, может в следующий раз получится. Наша команда разработчиков верит в Вас!");
+                    break;
         }
 
 
