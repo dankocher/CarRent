@@ -2,8 +2,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 public class Main {
 
     private static ArrayList<Auto> Cars = new ArrayList<>();
@@ -35,14 +33,13 @@ public class Main {
                 addCar();
                break;
             case (2):
-                System.out.println("2");
                 removeCar();
                 break;
             case (3):
-                System.out.println("3");
+                editCar();
                 break;
             case (4):
-                showCars();
+                showCars(true);
                 break;
             case (5):
                 System.out.println("5");
@@ -54,7 +51,6 @@ public class Main {
 
     private static void addCar(){
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Введите марку машины");
         String mark = scanner.next();
         System.out.println("Введите модель машины");
@@ -69,8 +65,6 @@ public class Main {
         Cars.add(auto);
         menu();
 
-
-
     }
 
     private static void removeCar(){
@@ -78,7 +72,8 @@ public class Main {
            System.out.println("Машин нет");
            menu();
        }
-       showCarsForRemove();
+//       showCarsForRemove();
+        showCars(false);
         System.out.println("Какую машину хотите удалить?");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -88,32 +83,85 @@ public class Main {
         if(s.equalsIgnoreCase("yes")){
             removeCar();
         } else if(s.equalsIgnoreCase("no")){
-            showCars();
+            showCars(true);
 
         }
 
-
-
-
     }
 
-    private static void showCars(){
+    private static void showCars(Boolean showMenu ){
        int i = 1;
        for(Auto auto:Cars){
            System.out.println("-----"+i+"-----");
            i++;
            auto.show();
        }
-        menu();
+       if(showMenu) {
+           menu();
+       }
     }
 
-    private static void  showCarsForRemove(){
-        int i = 1;
-        for(Auto auto:Cars){
-            System.out.println("-----"+i+"-----");
-            i++;
-            auto.show();
+//    private static void  showCarsForRemove(){
+//        int i = 1;
+//        for(Auto auto:Cars){
+//            System.out.println("-----"+i+"-----");
+//            i++;
+//            auto.show();
+//        }
+//    }
+
+    private static void editCar(){
+       if(Cars.isEmpty()){
+           System.out.println("Машин нет");
+           menu();
+       }
+       showCars(false);
+       Scanner scanner = new Scanner(System.in);
+       System.out.println("Какую машину хотите изменить?");
+       int n = scanner.nextInt();
+       Cars.get(n-1).show();
+        System.out.println("Что хотите изменить?(марка/модель/номер/год/цвет)");
+        String s = scanner.next();
+        switch (s){
+            case ("марка"):
+                System.out.println("Введите новую марку машины");
+                String ma = scanner.next();
+                Cars.get(n-1).setMark(ma);
+                System.out.println("Марка машины изменена");
+                showCars(true);
+                break;
+            case ("модель"):
+                System.out.println("Введите новую модель машины");
+                String mo = scanner.next();
+                Cars.get(n-1).setModel(mo);
+                System.out.println("Модель машины изменена");
+                showCars(true);
+                break;
+            case ("номер"):
+                System.out.println("Введите новый номер машины");
+                String num = scanner.next();
+                Cars.get(n-1).setNumber(num);
+                System.out.println("Номер машины изменен");
+                showCars(true);
+                break;
+            case ("год"):
+                System.out.println("Введите новый год машины");
+                int y = scanner.nextInt();
+                Cars.get(n-1).setYear(y);
+                System.out.println("Год машины изменен");
+                showCars(true);
+                break;
+            case ("цвет"):
+                System.out.println("Введите новый цвет машины");
+                String co = scanner.next();
+                Cars.get(n-1).setColor(co);
+                System.out.println("Цвет машины изменен");
+                showCars(true);
+                break;
         }
+
+
+       }
+
     }
 
-}
