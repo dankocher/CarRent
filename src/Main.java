@@ -25,7 +25,7 @@ public class Main {
 //    }
 
     private static void menu(){
-        System.out.println("1 - добавить машину\n2 - удалить машину\n3 - редактировать машину\n4 - показать все машины\n5 - найти машину по марке и модели\n6 - найти машину по номеру");
+        System.out.println("1 - добавить машину\n2 - удалить машину\n3 - редактировать машину\n4 - показать все машины\n5 - найти машину");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         switch (n){
@@ -42,10 +42,20 @@ public class Main {
                 showCars(true);
                 break;
             case (5):
-                System.out.println("5");
+                System.out.println("Найти машину по:\n" +
+                        "1. Марке и модели\n" +
+                        "2. Номеру");
+                int t = scanner.nextInt();
+                switch (t){
+                    case (1):
+                        findCarByMarkAndModel();
+                    case (2):
+                        findCarByNumber();
+
+                        default:menu();
+                }
                 break;
-            case (6):
-                System.out.println("6");
+            default:menu();
         }
     }
 
@@ -163,6 +173,59 @@ public class Main {
                     break;
         }
 
+
+       }
+
+       private static void findCarByMarkAndModel(){
+       if(Cars.isEmpty()){
+           System.out.println("Список машин пуст");
+           menu();
+       }
+       Scanner scanner = new Scanner(System.in);
+           System.out.println("Введите марку машины");
+           String ma = scanner.next();
+           System.out.println("Введите модель машины");
+           String mo = scanner.next();
+           int i = 0;
+           for(Auto auto:Cars){
+               if(auto.getMark().equalsIgnoreCase(ma)&& auto.getModel().equalsIgnoreCase(mo)){
+                   auto.show();
+               } else {
+                   i++;
+               }
+           }
+           if(Cars.size() == i-1){
+               System.out.println("Совпадений не найдено");
+               menu();
+           }
+           System.out.println("Вернуться в меню(1)");
+           scanner.next();
+           menu();
+       }
+
+       private static void findCarByNumber(){
+           if(Cars.isEmpty()){
+               System.out.println("Список машин пуст");
+               menu();
+           }
+           Scanner scanner = new Scanner(System.in);
+           System.out.println("Введите номер машины");
+           String n = scanner.next();
+           int i = 0;
+           for(Auto auto:Cars){
+               if(auto.getNumber().equalsIgnoreCase(n)){
+                   auto.show();
+               }else {
+                   i++;
+               }
+           }
+           if(Cars.size() == i-1){
+               System.out.println("Совпадений не найдено");
+               menu();
+           }
+           System.out.println("Вернуться в меню(1)");
+           scanner.next();
+           menu();
 
        }
 
