@@ -1,15 +1,20 @@
-
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     private static ArrayList<Auto> Cars = new ArrayList<>();
+    private static File autoFile = new File("Auto.txt");
 
 
-   public static void main(String[] args){
+
+    public static void main(String[] args) throws IOException {
 //     test();
+       loadingFromFile();
        menu();
+
+
     }
 //    private static void test(){
 //        String color = "cplor";
@@ -24,7 +29,40 @@ public class Main {
 //        }
 //    }
 
-    private static void menu(){
+    private static void save() throws IOException {
+        PrintWriter fileWriter = new PrintWriter(new BufferedWriter(new FileWriter(autoFile)));
+
+            for (Auto auto : Cars) {
+                fileWriter.println(auto.getMark());
+                fileWriter.println(auto.getModel());
+                fileWriter.println(auto.getNumber());
+                fileWriter.println(auto.getYear());
+                fileWriter.println(auto.getColor());
+            }
+            fileWriter.flush();
+            fileWriter.close();
+
+    }
+
+    private static void loadingFromFile() throws IOException {
+        FileReader fileReader = new FileReader(autoFile);
+        Scanner scan = new Scanner(fileReader);
+        if (autoFile.exists()){
+            while (scan.hasNextLine()){
+                Auto auto = new Auto(scan.nextLine(), scan.nextLine(), scan.nextLine(), Integer.parseInt(scan.nextLine()), scan.nextLine());
+                Cars.add(auto);
+            }
+
+        } else {
+            System.out.println("Файл не существует");
+            menu();
+        }
+        fileReader.close();
+    }
+
+
+
+    private static void menu() throws IOException {
         System.out.println("1 - добавить машину\n2 - удалить машину\n3 - редактировать машину\n4 - показать все машины\n5 - найти машину");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -40,6 +78,7 @@ public class Main {
                 break;
             case (4):
                 showCars(true);
+
                 break;
             case (5):
                 System.out.println("Найти машину по:\n" +
@@ -59,7 +98,7 @@ public class Main {
         }
     }
 
-    private static void addCar(){
+    private static void addCar() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите марку машины");
         String mark = scanner.next();
@@ -71,23 +110,26 @@ public class Main {
         int year = scanner.nextInt();
         System.out.println("Введите цвет машины");
         String color = scanner.next();
-        Auto auto = new Auto(color, mark, model, number, year);
+        Auto auto = new Auto(mark, model, number, year, color);
         Cars.add(auto);
+        save();
         menu();
+
 
     }
 
-    private static void removeCar(){
+    private static void removeCar() throws IOException {
        if(Cars.isEmpty()){
            System.out.println("Машин нет");
            menu();
        }
-//       showCarsForRemove();
+
         showCars(false);
         System.out.println("Какую машину хотите удалить?");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         Cars.remove(n-1);
+        save();
         System.out.println("Машина удалена. Хотите удалить еще?(yes/no)");
         String s = scanner.next();
         if(s.equalsIgnoreCase("yes")){
@@ -97,9 +139,10 @@ public class Main {
 
         }
 
+
     }
 
-    private static void showCars(Boolean showMenu ){
+    private static void showCars(Boolean showMenu ) throws IOException {
        int i = 1;
        for(Auto auto:Cars){
            System.out.println("-----"+i+"-----");
@@ -111,16 +154,7 @@ public class Main {
        }
     }
 
-//    private static void  showCarsForRemove(){
-//        int i = 1;
-//        for(Auto auto:Cars){
-//            System.out.println("-----"+i+"-----");
-//            i++;
-//            auto.show();
-//        }
-//    }
-
-    private static void editCar(){
+    private static void editCar() throws IOException {
        if(Cars.isEmpty()){
            System.out.println("Машин нет");
            menu();
@@ -172,11 +206,12 @@ public class Main {
                     System.out.println("Вы ввели хуяч какой-то. Попробуйте еще, может в следующий раз получится. Наша команда разработчиков верит в Вас!");
                     break;
         }
+        save();
 
 
        }
 
-       private static void findCarByMarkAndModel(){
+       private static void findCarByMarkAndModel() throws IOException {
        if(Cars.isEmpty()){
            System.out.println("Список машин пуст");
            menu();
@@ -203,7 +238,7 @@ public class Main {
            menu();
        }
 
-       private static void findCarByNumber(){
+       private static void findCarByNumber() throws IOException {
            if(Cars.isEmpty()){
                System.out.println("Список машин пуст");
                menu();

@@ -8,12 +8,13 @@ public class Auto {
     private int id;
 
 
-    Auto(String color, String mark, String model, String number, int year) {
-        this.color = color;
+    Auto( String mark, String model, String number, int year, String color) {
+
         this.mark = mark;
         this.model = model;
         this.number = number;
         this.year = year;
+        this.color = color;
 
     }
 
