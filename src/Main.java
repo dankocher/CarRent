@@ -1,11 +1,17 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Main {
 
     private static ArrayList<Auto> Cars = new ArrayList<>();
     private static File autoFile = new File("Auto.txt");
+    private static final Gson GSON = new  GsonBuilder().setPrettyPrinting().create();
+
 
 
 
@@ -33,11 +39,12 @@ public class Main {
         PrintWriter fileWriter = new PrintWriter(new BufferedWriter(new FileWriter(autoFile)));
 
             for (Auto auto : Cars) {
-                fileWriter.println(auto.getMark());
-                fileWriter.println(auto.getModel());
-                fileWriter.println(auto.getNumber());
-                fileWriter.println(auto.getYear());
-                fileWriter.println(auto.getColor());
+                fileWriter.print(GSON.toJson(auto));
+//                fileWriter.println(auto.getMark());
+//                fileWriter.println(auto.getModel());
+//                fileWriter.println(auto.getNumber());
+//                fileWriter.println(auto.getYear());
+//                fileWriter.println(auto.getColor());
             }
             fileWriter.flush();
             fileWriter.close();
@@ -47,11 +54,18 @@ public class Main {
     private static void loadingFromFile() throws IOException {
         FileReader fileReader = new FileReader(autoFile);
         Scanner scan = new Scanner(fileReader);
+
+
         if (autoFile.exists()){
-            while (scan.hasNextLine()){
+            while (scan.hasNextLine()) {
+
+
                 Auto auto = new Auto(scan.nextLine(), scan.nextLine(), scan.nextLine(), Integer.parseInt(scan.nextLine()), scan.nextLine());
+
+
                 Cars.add(auto);
             }
+
 
         } else {
             System.out.println("Файл не существует");
