@@ -1,5 +1,15 @@
-sdsadsadsadasd
-asdsadasdsa
-asdsadsad
-23
-zxcxzczxc
+{
+  "color": "dfghg",
+  "mark": "zxcxzb",
+  "model": "wasdg",
+  "number": "dhfdh",
+  "year": 567,
+  "id": 0
+}{
+  "color": "vn",
+  "mark": "sdfd",
+  "model": "jhkl",
+  "number": "iop",
+  "year": 89,
+  "id": 0
+}
